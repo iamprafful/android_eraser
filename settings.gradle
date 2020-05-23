@@ -1,0 +1,2 @@
+rootProject.name='Eraser Hardness'
+include ':app'
