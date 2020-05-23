@@ -19,11 +19,20 @@ public class MyCustomView extends View
     private Canvas mSourceCanvas = new Canvas();
     private Paint mDestPaint = new Paint();
     private Path mDestPath = new Path();
+    private int hardness;
 
-    public MyCustomView(Context context, int hardness)
+    public void setHardness(int hardness) {
+        this.hardness = hardness;
+        mDestPaint.setMaskFilter(new BlurMaskFilter(getHardness(), BlurMaskFilter.Blur.NORMAL));
+    }
+
+    public int getHardness() {
+        return hardness;
+    }
+
+    public MyCustomView(Context context)
     {
         super(context);
-
         //convert drawable file into bitmap
         Bitmap rawBitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.test);
 
@@ -32,14 +41,12 @@ public class MyCustomView extends View
 
         mSourceCanvas.setBitmap(mSourceBitmap);
         mSourceCanvas.drawBitmap(rawBitmap, 0, 0, null);
-
         mDestPaint.setAlpha(0);
         mDestPaint.setAntiAlias(true);
         mDestPaint.setStyle(Paint.Style.STROKE);
         mDestPaint.setStrokeJoin(Paint.Join.ROUND);
         mDestPaint.setStrokeCap(Paint.Cap.ROUND);
         mDestPaint.setStrokeWidth(100);
-        mDestPaint.setMaskFilter(new BlurMaskFilter(hardness, BlurMaskFilter.Blur.NORMAL));
         mDestPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
     }
 

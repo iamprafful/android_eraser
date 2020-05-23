@@ -8,6 +8,15 @@
     tools:context=".MainActivity"
     android:background="@drawable/bg">
 
+    <RelativeLayout
+        android:id="@+id/stickerIv"
+        android:layout_width="match_parent"
+        android:layout_height="460dp"
+        android:layout_centerVertical="true"
+        android:scaleType="centerCrop"
+        android:layout_margin="28dp"
+        />
+
     <SeekBar
         android:layout_alignParentBottom="true"
         android:layout_margin="20dp"
