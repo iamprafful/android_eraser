@@ -23,7 +23,16 @@ public class MyCustomView extends View
 
     public void setHardness(int hardness) {
         this.hardness = hardness;
-        mDestPaint.setMaskFilter(new BlurMaskFilter(getHardness(), BlurMaskFilter.Blur.NORMAL));
+        if(getHardness()==101)
+        {
+            mDestPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
+            mDestPaint.setMaskFilter(new BlurMaskFilter(1, BlurMaskFilter.Blur.NORMAL));
+        }
+        else {
+            mDestPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.MULTIPLY));
+            mDestPaint.setMaskFilter(new BlurMaskFilter(40, BlurMaskFilter.Blur.NORMAL));
+            mDestPaint.setARGB(255-getHardness(), 255,255,255);
+        }
     }
 
     public int getHardness() {
@@ -46,8 +55,7 @@ public class MyCustomView extends View
         mDestPaint.setStyle(Paint.Style.STROKE);
         mDestPaint.setStrokeJoin(Paint.Join.ROUND);
         mDestPaint.setStrokeCap(Paint.Cap.ROUND);
-        mDestPaint.setStrokeWidth(100);
-        mDestPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+        mDestPaint.setStrokeWidth(40);
     }
 
     @Override

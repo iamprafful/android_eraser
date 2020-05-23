@@ -17,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         seekBar = findViewById(R.id.seekBar);
         final MyCustomView myCustomView = new MyCustomView(MainActivity.this);
+        myCustomView.setHardness(1);
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
