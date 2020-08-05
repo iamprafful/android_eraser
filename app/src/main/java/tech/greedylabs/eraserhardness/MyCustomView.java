@@ -10,6 +10,8 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
+import android.graphics.RectF;
+import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -47,15 +49,22 @@ public class MyCustomView extends View
 
         //convert bitmap into mutable bitmap
         mSourceBitmap = Bitmap.createBitmap(rawBitmap.getWidth(), rawBitmap.getHeight(), Bitmap.Config.ARGB_8888);
-
+        float left = 0;
+        float top = 0;
+        RectF dst = new RectF(left, top, left + dpToPixels(getResources().getDisplayMetrics(), 200) , top + dpToPixels(getResources().getDisplayMetrics(), 200) );
         mSourceCanvas.setBitmap(mSourceBitmap);
-        mSourceCanvas.drawBitmap(rawBitmap, 0, 0, null);
+        mSourceCanvas.drawBitmap(rawBitmap, null, dst, null);
         mDestPaint.setAlpha(0);
         mDestPaint.setAntiAlias(true);
         mDestPaint.setStyle(Paint.Style.STROKE);
         mDestPaint.setStrokeJoin(Paint.Join.ROUND);
         mDestPaint.setStrokeCap(Paint.Cap.ROUND);
         mDestPaint.setStrokeWidth(40);
+    }
+
+    public static int dpToPixels(final DisplayMetrics display_metrics, final float dps) {
+        final float scale = display_metrics.density;
+        return (int) (dps * scale + 0.5f);
     }
 
     @Override
