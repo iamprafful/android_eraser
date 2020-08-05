@@ -3,6 +3,7 @@ package tech.greedylabs.eraserhardness;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
@@ -35,7 +36,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         RelativeLayout rootLayout = findViewById(R.id.stickerIv);
-        rootLayout.addView(myCustomView);
+        rootLayout.addView(myCustomView, dpToPixels(getResources().getDisplayMetrics(), 200), dpToPixels(getResources().getDisplayMetrics(), 200));
 
+    }
+    public static int dpToPixels(final DisplayMetrics display_metrics, final float dps) {
+        final float scale = display_metrics.density;
+        return (int) (dps * scale + 0.5f);
     }
 }

@@ -10,10 +10,10 @@
 
     <RelativeLayout
         android:id="@+id/stickerIv"
-        android:layout_width="match_parent"
-        android:layout_height="460dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_margin="28dp"/>
+        android:layout_centerHorizontal="true"/>
 
     <SeekBar
         android:layout_alignParentBottom="true"
